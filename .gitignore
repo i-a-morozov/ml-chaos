@@ -1,3 +1,4 @@
 notebooks/today
 .python-version
 venv
+.ipynb_checkpoints
