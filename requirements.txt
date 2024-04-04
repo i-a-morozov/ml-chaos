@@ -41,6 +41,10 @@ comm==0.2.2
     # via
     #   ipykernel
     #   ipywidgets
+contourpy==1.2.1
+    # via matplotlib
+cycler==0.12.1
+    # via matplotlib
 debugpy==1.8.1
     # via ipykernel
 decorator==5.1.1
@@ -55,6 +59,8 @@ executing==2.0.1
     # via stack-data
 fastjsonschema==2.19.1
     # via nbformat
+fonttools==4.50.0
+    # via matplotlib
 fqdn==1.5.1
     # via jsonschema
 h11==0.14.0
@@ -148,12 +154,16 @@ jupyterlab-server==2.25.4
     #   notebook
 jupyterlab-widgets==3.0.10
     # via ipywidgets
+kiwisolver==1.4.5
+    # via matplotlib
 llvmlite==0.42.0
     # via numba
 markupsafe==2.1.5
     # via
     #   jinja2
     #   nbconvert
+matplotlib==3.8.4
+    # via -r requirements.in
 matplotlib-inline==0.1.6
     # via
     #   ipykernel
@@ -186,6 +196,8 @@ numba==0.59.1
 numpy==1.26.4
     # via
     #   -r requirements.in
+    #   contourpy
+    #   matplotlib
     #   numba
 overrides==7.7.0
     # via jupyter-server
@@ -195,6 +207,7 @@ packaging==24.0
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
+    #   matplotlib
     #   nbconvert
     #   qtconsole
     #   qtpy
@@ -204,6 +217,8 @@ parso==0.8.3
     # via jedi
 pexpect==4.9.0
     # via ipython
+pillow==10.3.0
+    # via matplotlib
 platformdirs==4.2.0
     # via jupyter-core
 prometheus-client==0.20.0
@@ -228,10 +243,13 @@ pygments==2.17.2
     #   jupyter-console
     #   nbconvert
     #   qtconsole
+pyparsing==3.1.2
+    # via matplotlib
 python-dateutil==2.9.0.post0
     # via
     #   arrow
     #   jupyter-client
+    #   matplotlib
 python-json-logger==2.0.7
     # via jupyter-events
 pyyaml==6.0.1
@@ -282,6 +300,8 @@ soupsieve==2.5
     # via beautifulsoup4
 stack-data==0.6.3
     # via ipython
+tbb==2021.12.0
+    # via -r requirements.in
 terminado==0.18.1
     # via
     #   jupyter-server

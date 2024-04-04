@@ -2,3 +2,5 @@ jupyter
 notebook
 numpy
 numba
+matplotlib
+tbb
