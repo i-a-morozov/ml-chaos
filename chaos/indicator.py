@@ -2,9 +2,9 @@ import numpy
 import numba
 
 
-def rem_factory(forward, inverse, *, level=1.0E-15, perturbation=5.0E-16):
+def rem_factory(forward, inverse, *, level=1.0E-15, perturbation=5.0E-16, fastmath=True, parallel=True):
     """ Generates REM indicator """
-    @numba.jit('float64[:](int64, float64[:], float64[:, :])', nopython=True, fastmath=True, parallel=True)
+    @numba.jit('float64[:](int64, float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
     def rem(n, k, xs):
         out = numpy.zeros(len(xs))
         for i in numba.prange(len(xs)):
@@ -35,9 +35,9 @@ def frequency(f, xs):
     return numpy.ascontiguousarray(f) @ (numpy.diff(numpy.arctan2(qs, ps)) % (2.0*numpy.pi))/(2.0*numpy.pi)
 
 
-def fma_factory(orbit, *, level=1.0E-15):
+def fma_factory(orbit, *, level=1.0E-15, fastmath=True, parallel=True):
     """ Generates FMA indicator """
-    @numba.jit('float64[:](float64[:], float64[:], float64[:, :])', nopython=True, fastmath=True, parallel=True)
+    @numba.jit('float64[:](float64[:], float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
     def fma(f, k, xs):
         n = len(f)
         out = numpy.zeros(len(xs))
@@ -58,9 +58,9 @@ def fma_factory(orbit, *, level=1.0E-15):
     return fma
 
 
-def tangent_factory(mapping, jacobian):
+def tangent_factory(mapping, jacobian, fastmath=True, parallel=False):
     """ Generates a tangent mapping callable with (normalized) dynamics of deviation vectors """
-    @numba.jit('Tuple((float64[:], float64[:, :]))(float64[:], float64[:], float64[:, :])', nopython=True, fastmath=True, parallel=False)
+    @numba.jit('Tuple((float64[:], float64[:, :]))(float64[:], float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
     def tangent(k, x, v):
         x = mapping(k, x)
         v = numpy.ascontiguousarray(v)
@@ -79,9 +79,9 @@ def product(v):
     return numpy.prod(s)
 
 
-def gali_factory(tangent, *, level=1.0E-15):
+def gali_factory(tangent, *, level=1.0E-15, fastmath=True, parallel=True):
     """ Generates FMA indicator """
-    @numba.jit('float64[:](int64, float64[:], float64[:, :], float64[:, :, :])', nopython=True, fastmath=True, parallel=True)
+    @numba.jit('float64[:](int64, float64[:], float64[:, :], float64[:, :, :])', nopython=True, fastmath=fastmath, parallel=parallel)
     def gali(n, k, xs, vs):
         out = numpy.zeros(len(xs))
         for i in numba.prange(len(xs)):
