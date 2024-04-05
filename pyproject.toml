@@ -1,0 +1,24 @@
+[project]
+name = "chaos"
+description = ""
+readme = "README.MD"
+requires-python = ">=3.10"
+keywords = []
+authors = [{name = "Ivan Morozov"}]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10"
+]
+dependencies = ["numpy", "numba"]
+version = "0.1.0"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm[toml]", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["chaos"]
