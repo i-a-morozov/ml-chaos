@@ -2,6 +2,20 @@ import numpy
 import numba
 
 
+def survival_factory(mapping, *, fastmath=True, parallel=True):
+    """ Generates survival indicator """
+    @numba.jit('float64[:](int64, float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
+    def survival(n, k, xs):
+        out = numpy.zeros(len(xs))
+        for i in numba.prange(len(xs)):
+            x = xs[i]
+            for _ in range(n):
+                x = mapping(k, x)
+            out[i] = numpy.linalg.norm(x)
+        return out
+    return survival
+
+
 def rem_factory(forward, inverse, *, level=1.0E-15, perturbation=5.0E-16, fastmath=True, parallel=True):
     """ Generates REM indicator """
     @numba.jit('float64[:](int64, float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
