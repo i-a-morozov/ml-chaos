@@ -16,7 +16,7 @@ Signature
 k -- numpy array with mapping parameters (knobs)
 x -- numpy array with initial condition
 
-@numba.jit('float64[:](float64[:], float64[:])', nopython=True, fastmath=True, parallel=False)
+@numba.jit('float64[:](float64[:], float64[:])', nopython=True, fastmath=False, parallel=False)
 def [name]_[dimension]_[kind](k, x):
     ...
     return x
@@ -26,7 +26,7 @@ import numpy
 import numba
 
 
-@numba.jit('float64[:](float64[:], float64[:])', nopython=True, fastmath=True, parallel=False)
+@numba.jit('float64[:](float64[:], float64[:])', nopython=True, fastmath=False, parallel=False)
 def polynomial_2d_forward(k, x):
     """ Forward polynomial mapping """
     w, s = k
@@ -35,7 +35,7 @@ def polynomial_2d_forward(k, x):
     return numpy.array([q, p])
 
 
-@numba.jit('float64[:](float64[:], float64[:])', nopython=True, fastmath=True, parallel=False)
+@numba.jit('float64[:](float64[:], float64[:])', nopython=True, fastmath=False, parallel=False)
 def polynomial_2d_inverse(k, x):
     """ Inverse polynomial mapping """
     w, s = k
@@ -44,7 +44,7 @@ def polynomial_2d_inverse(k, x):
     return numpy.array([q, p])
 
 
-@numba.jit('float64[:, :](float64[:], float64[:])', nopython=True, fastmath=True, parallel=False)
+@numba.jit('float64[:, :](float64[:], float64[:])', nopython=True, fastmath=False, parallel=False)
 def polynomial_2d_jacobian(k, x):
     """ Jacobian for forward polynomial mapping """
     w, s = k

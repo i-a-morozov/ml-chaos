@@ -12,6 +12,7 @@ from chaos.orbit import table_factory
 
 from chaos.indicator import survival_factory
 from chaos.indicator import rem_factory
+from chaos.indicator import window
 from chaos.indicator import fma_factory
 from chaos.indicator import tangent_factory
 from chaos.indicator import gali_factory

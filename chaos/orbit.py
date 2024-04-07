@@ -2,7 +2,7 @@ import numpy
 import numba
 
 
-def orbit_factory(mapping, *, fastmath=True, parallel=False):
+def orbit_factory(mapping, *, fastmath=False, parallel=False):
     """ Generates a callable for one trajectory computation """
     @numba.jit('float64[:, :](int64, float64[:], float64[:])', nopython=True, fastmath=fastmath, parallel=parallel)
     def orbit(n, k, x):
@@ -14,9 +14,9 @@ def orbit_factory(mapping, *, fastmath=True, parallel=False):
     return orbit
 
 
-def table_factory(mapping, *, fastmath=True, parallel=True):
+def table_factory(mapping, *, fastmath=False, parallel=True):
     """ Generates a callable for several trajectories computation (parallel over initial values) """
-    orbit = orbit_factory(mapping, fastmath=True, parallel=False)
+    orbit = orbit_factory(mapping, fastmath=False, parallel=False)
     @numba.jit('float64[:, :, :](int64, float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
     def table(n, k, x):
         l, d = x.shape
