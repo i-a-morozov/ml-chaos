@@ -99,7 +99,7 @@ def gali_factory(tangent, *, level=1.0E-15, fastmath=False, parallel=True):
     def gali(n, k, xs, vs):
         out = numpy.zeros(len(xs))
         Xs = numpy.copy(xs)
-        Vs = numpy.copy(vs)        
+        Vs = numpy.copy(vs)
         for i in numba.prange(len(xs)):
             x = Xs[i]
             v = Vs[i]

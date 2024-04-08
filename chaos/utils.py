@@ -13,7 +13,7 @@ def threshold(grid, *,
               bandwidth:float=0.2,
               plot:bool=False,
               output:str=None):
-    """ KDE based threshold computation """  
+    """ KDE based threshold computation """
     indicator = numpy.sort(grid.flatten())
     indicator = indicator[~numpy.isnan(indicator)].reshape(-1, 1)
     points = numpy.linspace(*interval, count)
@@ -22,7 +22,7 @@ def threshold(grid, *,
     peaks, info = find_peaks(score, height=(None, None))
     *_, chaotic, regular = peaks[numpy.exp(info['peak_heights']).argsort()]
     position = numpy.exp(score[regular:chaotic]).argmin()
-    threshold = points[position]
+    threshold = points[regular + position]
     if plot:
         _, (ax, ay) = plt.subplots(nrows=2, ncols=1, figsize=(12, 2*3))
         ax.plot(indicator, color='blue', alpha=0.75)
@@ -40,7 +40,7 @@ def threshold(grid, *,
         plt.tight_layout()
         if output:
             plt.savefig(output, dpi=200)
-        plt.show()     
+        plt.show()
     return threshold
 
 
@@ -49,9 +49,9 @@ def classify(grid, data, threshold:float, *,
              chaotic=1.0,
              mask:bool=True,
              plot:bool=False,
-             xmin:float=-1.0, 
-             xmax:float=+1.0, 
-             ymin:float=-1.0, 
+             xmin:float=-1.0,
+             xmax:float=+1.0,
+             ymin:float=-1.0,
              ymax:float=+1.0,
              output:str=None):
     """ Thrshold classification """
