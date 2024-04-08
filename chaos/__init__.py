@@ -17,6 +17,8 @@ from chaos.indicator import fma_factory
 from chaos.indicator import tangent_factory
 from chaos.indicator import gali_factory
 
+from chaos.utils import threshold
+from chaos.utils import classify
 
 orbit = orbit_factory(forward)
 table = table_factory(forward)
