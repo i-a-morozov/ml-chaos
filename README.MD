@@ -15,3 +15,11 @@ Install from git:
 ```
 $ pip install git+https://github.com/imorozov/ml-chaos@main
 ```
+
+Illustration of REM chaos indicator vs trajectory length:
+
+<p align="center">
+  <img width="256" height="256" src="https://github.com/i-a-morozov/fractal/blob/main/pics/indicator.gif">
+</p>
+
+

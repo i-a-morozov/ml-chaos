@@ -13,7 +13,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10"
 ]
-dependencies = ["numpy", "numba"]
+dependencies = ["numpy", "numba", "scipy", "scikit-learn", "matplotlib", "tqdm"]
 version = "0.1.0"
 
 [build-system]
