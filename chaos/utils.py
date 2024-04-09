@@ -20,7 +20,8 @@ def threshold(grid, *,
     kde = KernelDensity(kernel=kernel, bandwidth=bandwidth).fit(indicator)
     score = kde.score_samples(points.reshape(-1, 1))
     peaks, info = find_peaks(score, height=(None, None))
-    *_, chaotic, regular = peaks[numpy.exp(info['peak_heights']).argsort()]
+    *_, second, first = peaks[numpy.exp(info['peak_heights']).argsort()]
+    regular, chaotic = min(first, second), max(first, second)
     position = numpy.exp(score[regular:chaotic]).argmin()
     threshold = points[regular + position]
     if plot:
