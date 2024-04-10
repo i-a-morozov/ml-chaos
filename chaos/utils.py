@@ -54,20 +54,20 @@ def classify(grid, data, threshold:float, *,
              xmax:float=+1.0,
              ymin:float=-1.0,
              ymax:float=+1.0,
+             s:float=0.01,
              output:str=None):
     """ Thrshold classification """
     table = numpy.copy(grid)
-    table = numpy.where(table >= threshold, regular, chaotic)
+    table = numpy.where(table >= threshold, chaotic, regular)
     table[numpy.isnan(grid)] = float('nan')
     bounded = ~numpy.isnan(table.flatten())
     X = data[bounded]
     y = table.flatten()[bounded]
     if plot:
-        cmap = colormaps.get_cmap('gray')
-        cmap.set_bad(color='gray')
+        cmap = colormaps.get_cmap('gray_r')
         plt.figure(figsize=(8, 8))
         plt.gca().set_facecolor('gray')
-        plt.scatter(*X.T, c=y, cmap=cmap, s=0.01)
+        plt.scatter(*X.T, c=y, cmap=cmap, s=s)
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
         plt.tight_layout()
