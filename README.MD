@@ -27,7 +27,7 @@ Illustration of REM chaos indicator vs trajectory length:
 </p>
 
 <p align="center">
-  <img width="256" height="128" src="https://github.com/i-a-morozov/ml-chaos/blob/main/pics/historgam.png">
+  <img width="256" height="128" src="https://github.com/i-a-morozov/ml-chaos/blob/main/pics/histogram.png">
 </p>
 
 
