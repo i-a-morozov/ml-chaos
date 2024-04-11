@@ -16,7 +16,7 @@ def survival_factory(mapping, *, fastmath=False, parallel=True):
     return survival
 
 
-def rem_factory(forward, inverse, *, level=1.0E-15, perturbation=5.0E-16, fastmath=False, parallel=True):
+def rem_factory(forward, inverse, *, level=1.0E-15, perturbation=0.0, fastmath=False, parallel=True):
     """ Generates REM indicator """
     @numba.jit('float64[:](int64, float64[:], float64[:, :])', nopython=True, fastmath=fastmath, parallel=parallel)
     def rem(n, k, xs):
